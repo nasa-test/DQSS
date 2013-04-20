@@ -1,0 +1,137 @@
+<Root>
+<QualityView>
+  <Datavar>
+    <Dataset name="ML2O3">
+      <Variable name="O3">
+        <Dimension index="1" name="nLevels"/>
+        <Dimension index="0" name="nTimes"/>
+      </Variable>
+    </Dataset>
+  </Datavar>
+  <Expression>
+    <OR>
+      <OR>
+        <OR>
+          <OR>
+            <OR>
+              <AND>
+                <NOT>
+                  <ScreeningAssertion name="PressureNonNeg_O3_Range" type="ThresholdScreeningAssertion">
+                    <hasAttribute>
+                      <hasMinThreshold value="56.2341"/>
+                      <hasMaxThreshold value="261.016"/>
+                    </hasAttribute>
+                    <ScreeningField name="H2O_Pressure_BoundariesField">
+                      <Dimension index="0" name="nLevels"/>
+                      <Variable name="Pressure">
+                        <Dimension index="0" name="nLevels"/>
+                      </Variable>
+                      <FieldValueType endian="" hasStartBitIndex=""
+                        hasStartLayerIndex="0" hasStopBitIndex=""
+                        hasStopLayerIndex="0" samplingdim="None"/>
+                    </ScreeningField>
+                  </ScreeningAssertion>
+                </NOT>
+                <ScreeningAssertion name="MixingRatioMinimum_O3" type="ThresholdScreeningAssertion">
+                  <hasAttribute>
+                    <hasMinThreshold value="-0.0000001499"/>
+                  </hasAttribute>
+                  <ScreeningField name="O3_sf">
+                    <Dimension index="1" name="nLevels"/>
+                    <Dimension index="0" name="nTimes"/>
+                    <Variable name="O3">
+                      <Dimension index="0" name="nTimes"/>
+                      <Dimension index="1" name="nLevels"/>
+                    </Variable>
+                    <FieldValueType endian="" hasStartBitIndex=""
+                      hasStartLayerIndex="0" hasStopBitIndex=""
+                      hasStopLayerIndex="0" samplingdim="None"/>
+                  </ScreeningField>
+                </ScreeningAssertion>
+              </AND>
+              <ScreeningAssertion name="L2gpPrecision_SA" type="ThresholdScreeningAssertion">
+                <hasAttribute>
+                  <hasMinThreshold value="0"/>
+                </hasAttribute>
+                <ScreeningField name="L2gpPrecisionField">
+                  <Dimension index="1" name="nLevels"/>
+                  <Dimension index="0" name="nTimes"/>
+                  <Variable name="L2gpPrecision">
+                    <Dimension index="0" name="nTimes"/>
+                    <Dimension index="1" name="nLevels"/>
+                  </Variable>
+                  <FieldValueType endian="" hasStartBitIndex=""
+                    hasStartLayerIndex="0" hasStopBitIndex=""
+                    hasStopLayerIndex="0" samplingdim="None"/>
+                </ScreeningField>
+              </ScreeningAssertion>
+            </OR>
+            <ScreeningAssertion name="Status_BadProfile" type="RetrievalConditionScreeningAssertion">
+              <hasAttribute>
+                <RetrievalCondition value="DoNotUseThisProfile"/>
+              </hasAttribute>
+              <ScreeningField name="H2O_Status_BadProfileField">
+                <Dimension index="0" name="nTimes"/>
+                <Variable name="Status">
+                  <Dimension index="0" name="nTimes"/>
+                </Variable>
+                <FieldValueType endian="true" hasStartBitIndex="0"
+                  hasStartLayerIndex="0" hasStopBitIndex="0"
+                  hasStopLayerIndex="0" samplingdim="None">
+                  <ValidEnumValue interpretation="DoNotUseThisProfile" value="1"/>
+                </FieldValueType>
+              </ScreeningField>
+            </ScreeningAssertion>
+          </OR>
+          <ScreeningAssertion name="O3_Convergence" type="ThresholdScreeningAssertion">
+            <hasAttribute>
+              <hasMaxThreshold value="1.18"/>
+            </hasAttribute>
+            <ScreeningField name="H2O_ConvergenceField">
+              <Dimension index="0" name="nTimes"/>
+              <Variable name="Convergence">
+                <Dimension index="0" name="nTimes"/>
+              </Variable>
+              <FieldValueType endian="" hasStartBitIndex=""
+                hasStartLayerIndex="0" hasStopBitIndex=""
+                hasStopLayerIndex="0" samplingdim="None"/>
+            </ScreeningField>
+          </ScreeningAssertion>
+        </OR>
+        <ScreeningAssertion name="PressureLimits_O3" type="ThresholdScreeningAssertion">
+          <hasAttribute>
+            <hasMinThreshold value=".0215443"/>
+            <hasMaxThreshold value="261.016"/>
+          </hasAttribute>
+          <ScreeningField name="H2O_Pressure_BoundariesField">
+            <Dimension index="0" name="nLevels"/>
+            <Variable name="Pressure">
+              <Dimension index="0" name="nLevels"/>
+            </Variable>
+            <FieldValueType endian="" hasStartBitIndex=""
+              hasStartLayerIndex="0" hasStopBitIndex=""
+              hasStopLayerIndex="0" samplingdim="None"/>
+          </ScreeningField>
+        </ScreeningAssertion>
+      </OR>
+      <ScreeningAssertion name="O3_Quality" type="MinimumQualityInterpretationScreeningAssertion">
+        <hasAttribute>
+          <QualityRecommendation value="O3Profiles"/>
+        </hasAttribute>
+        <ScreeningField name="O3_QualityLevel">
+          <Dimension index="0" name="nTimes"/>
+          <Variable name="Quality">
+            <Dimension index="0" name="nTimes"/>
+          </Variable>
+          <FieldValueType direction="true" endian="" hasStartBitIndex=""
+            hasStartLayerIndex="0" hasStopBitIndex=""
+            hasStopLayerIndex="0" samplingdim="None">
+            <ValidQualityLevel interpretation="O3Profiles" value="0.43"/>
+          </FieldValueType>
+        </ScreeningField>
+      </ScreeningAssertion>
+    </OR>
+  </Expression>
+</QualityView>
+</Root>
+

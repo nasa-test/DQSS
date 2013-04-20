@@ -1,0 +1,1049 @@
+<root>
+<QualityView>
+  <Datavar>
+    <Dataset name="MOD04_L2">
+      <Variable name="Optical_Depth_Land_And_Ocean">
+        <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+        <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+      </Variable>
+    </Dataset>
+  </Datavar>
+  <Expression>
+    <OR>
+      <AND>
+        <ScreeningAssertion name="Surface_OCEAN_CM" type="SurfaceTypeScreeningAssertion">
+          <hasAttribute>
+            <SurfaceType value="OCEAN"/>
+          </hasAttribute>
+          <ScreeningField name="CloudMaskQA_SurfaceTypeFlag">
+            <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+            <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+            <Variable name="Cloud_Mask_QA">
+              <Dimension index="1" name="Cell_Across_Swath"/>
+              <Dimension index="0" name="Cell_Along_Swath"/>
+            </Variable>
+            <FieldValueType endian="true" hasStartBitIndex="5"
+              hasStartLayerIndex="0" hasStopBitIndex="6"
+              hasStopLayerIndex="0" samplingdim="None">
+              <SurfaceTypeValue interpretation="OCEAN" value="0"/>
+            </FieldValueType>
+          </ScreeningField>
+        </ScreeningAssertion>
+        <ScreeningAssertion name="QualityAssuranceOcean_AvgConfFlag" type="MinimumQualityInterpretationScreeningAssertion">
+          <hasAttribute>
+            <QualityRecommendation value="GOOD"/>
+          </hasAttribute>
+          <ScreeningField name="QualityAssuranceOcean_AerosolAvgSolutionConfidenceFlag">
+            <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+            <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+            <Variable name="Quality_Assurance_Ocean">
+              <Dimension index="0" name="Cell_Along_Swath"/>
+              <Dimension index="1" name="Cell_Across_Swath"/>
+              <Dimension index="2" name="QA_Byte_Ocean"/>
+            </Variable>
+            <FieldValueType direction="true" endian="true"
+              hasStartBitIndex="5" hasStartLayerIndex="0"
+              hasStopBitIndex="7" hasStopLayerIndex="0" samplingdim="QA_Byte_Ocean">
+              <ValidQualityLevel interpretation="GOOD" value="2"/>
+            </FieldValueType>
+          </ScreeningField>
+        </ScreeningAssertion>
+      </AND>
+      <OR>
+        <AND>
+          <ScreeningAssertion name="Surface_LAND_CM" type="SurfaceTypeScreeningAssertion">
+            <hasAttribute>
+              <SurfaceType value="LAND"/>
+            </hasAttribute>
+            <ScreeningField name="CloudMaskQA_SurfaceTypeFlag">
+              <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+              <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+              <Variable name="Cloud_Mask_QA">
+                <Dimension index="1" name="Cell_Across_Swath"/>
+                <Dimension index="0" name="Cell_Along_Swath"/>
+              </Variable>
+              <FieldValueType endian="true" hasStartBitIndex="5"
+                hasStartLayerIndex="0" hasStopBitIndex="6"
+                hasStopLayerIndex="0" samplingdim="None">
+                <SurfaceTypeValue interpretation="LAND" value="3"/>
+              </FieldValueType>
+            </ScreeningField>
+          </ScreeningAssertion>
+          <ScreeningAssertion name="QualityAssuranceLand_AOTCF47" type="MinimumQualityInterpretationScreeningAssertion">
+            <hasAttribute>
+              <QualityRecommendation value="GOOD"/>
+            </hasAttribute>
+            <ScreeningField name="QualityAssuranceLand_0.47micronAerosolOpticalThicknessConfidenceFlag">
+              <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+              <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+              <Variable name="Quality_Assurance_Land">
+                <Dimension index="0" name="Cell_Along_Swath"/>
+                <Dimension index="1" name="Cell_Across_Swath"/>
+                <Dimension index="2" name="QA_Byte_Land"/>
+              </Variable>
+              <FieldValueType direction="true" endian="true"
+                hasStartBitIndex="5" hasStartLayerIndex="0"
+                hasStopBitIndex="7" hasStopLayerIndex="0" samplingdim="QA_Byte_Land">
+                <ValidQualityLevel interpretation="GOOD" value="2"/>
+              </FieldValueType>
+            </ScreeningField>
+          </ScreeningAssertion>
+        </AND>
+        <OR>
+          <AND>
+            <ScreeningAssertion name="Surface_COAST_CM" type="SurfaceTypeScreeningAssertion">
+              <hasAttribute>
+                <SurfaceType value="COAST"/>
+              </hasAttribute>
+              <ScreeningField name="CloudMaskQA_SurfaceTypeFlag">
+                <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+                <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+                <Variable name="Cloud_Mask_QA">
+                  <Dimension index="1" name="Cell_Across_Swath"/>
+                  <Dimension index="0" name="Cell_Along_Swath"/>
+                </Variable>
+                <FieldValueType endian="true" hasStartBitIndex="5"
+                  hasStartLayerIndex="0" hasStopBitIndex="6"
+                  hasStopLayerIndex="0" samplingdim="None">
+                  <SurfaceTypeValue interpretation="COAST" value="1"/>
+                </FieldValueType>
+              </ScreeningField>
+            </ScreeningAssertion>
+            <ScreeningAssertion name="QualityAssuranceLand_AOTCF47" type="MinimumQualityInterpretationScreeningAssertion">
+              <hasAttribute>
+                <QualityRecommendation value="GOOD"/>
+              </hasAttribute>
+              <ScreeningField name="QualityAssuranceLand_0.47micronAerosolOpticalThicknessConfidenceFlag">
+                <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+                <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+                <Variable name="Quality_Assurance_Land">
+                  <Dimension index="0" name="Cell_Along_Swath"/>
+                  <Dimension index="1" name="Cell_Across_Swath"/>
+                  <Dimension index="2" name="QA_Byte_Land"/>
+                </Variable>
+                <FieldValueType direction="true" endian="true"
+                  hasStartBitIndex="5" hasStartLayerIndex="0"
+                  hasStopBitIndex="7" hasStopLayerIndex="0" samplingdim="QA_Byte_Land">
+                  <ValidQualityLevel interpretation="GOOD" value="2"/>
+                </FieldValueType>
+              </ScreeningField>
+            </ScreeningAssertion>
+          </AND>
+          <OR>
+            <AND>
+              <ScreeningAssertion name="Surface_LAND_CM" type="SurfaceTypeScreeningAssertion">
+                <hasAttribute>
+                  <SurfaceType value="LAND"/>
+                </hasAttribute>
+                <ScreeningField name="CloudMaskQA_SurfaceTypeFlag">
+                  <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+                  <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+                  <Variable name="Cloud_Mask_QA">
+                    <Dimension index="1" name="Cell_Across_Swath"/>
+                    <Dimension index="0" name="Cell_Along_Swath"/>
+                  </Variable>
+                  <FieldValueType endian="true" hasStartBitIndex="5"
+                    hasStartLayerIndex="0" hasStopBitIndex="6"
+                    hasStopLayerIndex="0" samplingdim="None">
+                    <SurfaceTypeValue interpretation="LAND" value="3"/>
+                  </FieldValueType>
+                </ScreeningField>
+              </ScreeningAssertion>
+              <ScreeningAssertion name="Retrieval_WaterPixels" type="RetrievalConditionScreeningAssertion">
+                <hasAttribute>
+                  <RetrievalCondition value="WaterPixelsIn10x10Box"/>
+                </hasAttribute>
+                <ScreeningField name="QualityAssuranceLand_RetrievingConditionFlagsWithInversion">
+                  <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+                  <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+                  <Variable name="Quality_Assurance_Land">
+                    <Dimension index="0" name="Cell_Along_Swath"/>
+                    <Dimension index="1" name="Cell_Across_Swath"/>
+                    <Dimension index="2" name="QA_Byte_Land"/>
+                  </Variable>
+                  <FieldValueType endian="true" hasStartBitIndex="0"
+                    hasStartLayerIndex="1" hasStopBitIndex="3"
+                    hasStopLayerIndex="1" samplingdim="QA_Byte_Land">
+                    <ValidEnumValue
+                      interpretation="WaterPixelsIn10x10Box" value="2"/>
+                  </FieldValueType>
+                </ScreeningField>
+              </ScreeningAssertion>
+            </AND>
+            <OR>
+              <AND>
+                <ScreeningAssertion name="Surface_LAND_CM" type="SurfaceTypeScreeningAssertion">
+                  <hasAttribute>
+                    <SurfaceType value="LAND"/>
+                  </hasAttribute>
+                  <ScreeningField name="CloudMaskQA_SurfaceTypeFlag">
+                    <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+                    <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+                    <Variable name="Cloud_Mask_QA">
+                      <Dimension index="1" name="Cell_Across_Swath"/>
+                      <Dimension index="0" name="Cell_Along_Swath"/>
+                    </Variable>
+                    <FieldValueType endian="true" hasStartBitIndex="5"
+                      hasStartLayerIndex="0" hasStopBitIndex="6"
+                      hasStopLayerIndex="0" samplingdim="None">
+                      <SurfaceTypeValue interpretation="LAND" value="3"/>
+                    </FieldValueType>
+                  </ScreeningField>
+                </ScreeningAssertion>
+                <ScreeningAssertion name="Retrieval_CirrusPresent" type="RetrievalConditionScreeningAssertion">
+                  <hasAttribute>
+                    <RetrievalCondition value="CirrusPresent"/>
+                  </hasAttribute>
+                  <ScreeningField name="QualityAssuranceLand_RetrievingConditionFlagsWithInversion">
+                    <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+                    <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+                    <Variable name="Quality_Assurance_Land">
+                      <Dimension index="0" name="Cell_Along_Swath"/>
+                      <Dimension index="1" name="Cell_Across_Swath"/>
+                      <Dimension index="2" name="QA_Byte_Land"/>
+                    </Variable>
+                    <FieldValueType endian="true" hasStartBitIndex="0"
+                      hasStartLayerIndex="1" hasStopBitIndex="3"
+                      hasStopLayerIndex="1" samplingdim="QA_Byte_Land">
+                      <ValidEnumValue interpretation="CirrusPresent" value="3"/>
+                    </FieldValueType>
+                  </ScreeningField>
+                </ScreeningAssertion>
+              </AND>
+              <OR>
+                <AND>
+                  <ScreeningAssertion name="Surface_LAND_CM" type="SurfaceTypeScreeningAssertion">
+                    <hasAttribute>
+                      <SurfaceType value="LAND"/>
+                    </hasAttribute>
+                    <ScreeningField name="CloudMaskQA_SurfaceTypeFlag">
+                      <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+                      <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+                      <Variable name="Cloud_Mask_QA">
+                        <Dimension index="1" name="Cell_Across_Swath"/>
+                        <Dimension index="0" name="Cell_Along_Swath"/>
+                      </Variable>
+                      <FieldValueType endian="true" hasStartBitIndex="5"
+                        hasStartLayerIndex="0" hasStopBitIndex="6"
+                        hasStopLayerIndex="0" samplingdim="None">
+                        <SurfaceTypeValue interpretation="LAND" value="3"/>
+                      </FieldValueType>
+                    </ScreeningField>
+                  </ScreeningAssertion>
+                  <ScreeningAssertion name="Retrieval_Fitting25" type="RetrievalConditionScreeningAssertion">
+                    <hasAttribute>
+                      <RetrievalCondition value="FittingErrorGreaterThan0.25"/>
+                    </hasAttribute>
+                    <ScreeningField name="QualityAssuranceLand_RetrievingConditionFlagsWithInversion">
+                      <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+                      <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+                      <Variable name="Quality_Assurance_Land">
+                        <Dimension index="0" name="Cell_Along_Swath"/>
+                        <Dimension index="1" name="Cell_Across_Swath"/>
+                        <Dimension index="2" name="QA_Byte_Land"/>
+                      </Variable>
+                      <FieldValueType endian="true" hasStartBitIndex="0"
+                        hasStartLayerIndex="1" hasStopBitIndex="3"
+                        hasStopLayerIndex="1" samplingdim="QA_Byte_Land">
+                        <ValidEnumValue
+                          interpretation="FittingErrorGreaterThan0.25" value="4"/>
+                      </FieldValueType>
+                    </ScreeningField>
+                  </ScreeningAssertion>
+                </AND>
+                <OR>
+                  <AND>
+                    <ScreeningAssertion name="Surface_COAST_CM" type="SurfaceTypeScreeningAssertion">
+                      <hasAttribute>
+                        <SurfaceType value="COAST"/>
+                      </hasAttribute>
+                      <ScreeningField name="CloudMaskQA_SurfaceTypeFlag">
+                        <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+                        <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+                        <Variable name="Cloud_Mask_QA">
+                          <Dimension index="1" name="Cell_Across_Swath"/>
+                          <Dimension index="0" name="Cell_Along_Swath"/>
+                        </Variable>
+                        <FieldValueType endian="true"
+                          hasStartBitIndex="5" hasStartLayerIndex="0"
+                          hasStopBitIndex="6" hasStopLayerIndex="0" samplingdim="None">
+                          <SurfaceTypeValue interpretation="COAST" value="1"/>
+                        </FieldValueType>
+                      </ScreeningField>
+                    </ScreeningAssertion>
+                    <ScreeningAssertion name="Retrieval_WaterPixels" type="RetrievalConditionScreeningAssertion">
+                      <hasAttribute>
+                        <RetrievalCondition value="WaterPixelsIn10x10Box"/>
+                      </hasAttribute>
+                      <ScreeningField name="QualityAssuranceLand_RetrievingConditionFlagsWithInversion">
+                        <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+                        <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+                        <Variable name="Quality_Assurance_Land">
+                          <Dimension index="0" name="Cell_Along_Swath"/>
+                          <Dimension index="1" name="Cell_Across_Swath"/>
+                          <Dimension index="2" name="QA_Byte_Land"/>
+                        </Variable>
+                        <FieldValueType endian="true"
+                          hasStartBitIndex="0" hasStartLayerIndex="1"
+                          hasStopBitIndex="3" hasStopLayerIndex="1" samplingdim="QA_Byte_Land">
+                          <ValidEnumValue
+                            interpretation="WaterPixelsIn10x10Box" value="2"/>
+                        </FieldValueType>
+                      </ScreeningField>
+                    </ScreeningAssertion>
+                  </AND>
+                  <OR>
+                    <AND>
+                      <ScreeningAssertion name="Surface_COAST_CM" type="SurfaceTypeScreeningAssertion">
+                        <hasAttribute>
+                          <SurfaceType value="COAST"/>
+                        </hasAttribute>
+                        <ScreeningField name="CloudMaskQA_SurfaceTypeFlag">
+                          <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+                          <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+                          <Variable name="Cloud_Mask_QA">
+                            <Dimension index="1" name="Cell_Across_Swath"/>
+                            <Dimension index="0" name="Cell_Along_Swath"/>
+                          </Variable>
+                          <FieldValueType endian="true"
+                            hasStartBitIndex="5" hasStartLayerIndex="0"
+                            hasStopBitIndex="6" hasStopLayerIndex="0" samplingdim="None">
+                            <SurfaceTypeValue interpretation="COAST" value="1"/>
+                          </FieldValueType>
+                        </ScreeningField>
+                      </ScreeningAssertion>
+                      <ScreeningAssertion name="Retrieval_CirrusPresent" type="RetrievalConditionScreeningAssertion">
+                        <hasAttribute>
+                          <RetrievalCondition value="CirrusPresent"/>
+                        </hasAttribute>
+                        <ScreeningField name="QualityAssuranceLand_RetrievingConditionFlagsWithInversion">
+                          <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+                          <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+                          <Variable name="Quality_Assurance_Land">
+                            <Dimension index="0" name="Cell_Along_Swath"/>
+                            <Dimension index="1" name="Cell_Across_Swath"/>
+                            <Dimension index="2" name="QA_Byte_Land"/>
+                          </Variable>
+                          <FieldValueType endian="true"
+                            hasStartBitIndex="0" hasStartLayerIndex="1"
+                            hasStopBitIndex="3" hasStopLayerIndex="1" samplingdim="QA_Byte_Land">
+                            <ValidEnumValue
+                              interpretation="CirrusPresent" value="3"/>
+                          </FieldValueType>
+                        </ScreeningField>
+                      </ScreeningAssertion>
+                    </AND>
+                    <AND>
+                      <ScreeningAssertion name="Surface_COAST_CM" type="SurfaceTypeScreeningAssertion">
+                        <hasAttribute>
+                          <SurfaceType value="COAST"/>
+                        </hasAttribute>
+                        <ScreeningField name="CloudMaskQA_SurfaceTypeFlag">
+                          <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+                          <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+                          <Variable name="Cloud_Mask_QA">
+                            <Dimension index="1" name="Cell_Across_Swath"/>
+                            <Dimension index="0" name="Cell_Along_Swath"/>
+                          </Variable>
+                          <FieldValueType endian="true"
+                            hasStartBitIndex="5" hasStartLayerIndex="0"
+                            hasStopBitIndex="6" hasStopLayerIndex="0" samplingdim="None">
+                            <SurfaceTypeValue interpretation="COAST" value="1"/>
+                          </FieldValueType>
+                        </ScreeningField>
+                      </ScreeningAssertion>
+                      <ScreeningAssertion name="Retrieval_Fitting25" type="RetrievalConditionScreeningAssertion">
+                        <hasAttribute>
+                          <RetrievalCondition value="FittingErrorGreaterThan0.25"/>
+                        </hasAttribute>
+                        <ScreeningField name="QualityAssuranceLand_RetrievingConditionFlagsWithInversion">
+                          <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+                          <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+                          <Variable name="Quality_Assurance_Land">
+                            <Dimension index="0" name="Cell_Along_Swath"/>
+                            <Dimension index="1" name="Cell_Across_Swath"/>
+                            <Dimension index="2" name="QA_Byte_Land"/>
+                          </Variable>
+                          <FieldValueType endian="true"
+                            hasStartBitIndex="0" hasStartLayerIndex="1"
+                            hasStopBitIndex="3" hasStopLayerIndex="1" samplingdim="QA_Byte_Land">
+                            <ValidEnumValue
+                              interpretation="FittingErrorGreaterThan0.25" value="4"/>
+                          </FieldValueType>
+                        </ScreeningField>
+                      </ScreeningAssertion>
+                    </AND>
+                  </OR>
+                </OR>
+              </OR>
+            </OR>
+          </OR>
+        </OR>
+      </OR>
+    </OR>
+  </Expression>
+</QualityView>
+<QualityView>
+  <Datavar>
+    <Dataset name="MOD04_L2">
+      <Variable name="Corrected_Optical_Depth_Land_wav2p1">
+        <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+        <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+      </Variable>
+    </Dataset>
+  </Datavar>
+  <Expression>
+    <OR>
+      <OR>
+        <OR>
+          <ScreeningAssertion name="Retrieval_Fitting25" type="RetrievalConditionScreeningAssertion">
+            <hasAttribute>
+              <RetrievalCondition value="FittingErrorGreaterThan0.25"/>
+            </hasAttribute>
+            <ScreeningField name="QualityAssuranceLand_RetrievingConditionFlagsWithInversion">
+              <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+              <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+              <Variable name="Quality_Assurance_Land">
+                <Dimension index="0" name="Cell_Along_Swath"/>
+                <Dimension index="1" name="Cell_Across_Swath"/>
+                <Dimension index="2" name="QA_Byte_Land"/>
+              </Variable>
+              <FieldValueType endian="true" hasStartBitIndex="0"
+                hasStartLayerIndex="1" hasStopBitIndex="3"
+                hasStopLayerIndex="1" samplingdim="QA_Byte_Land">
+                <ValidEnumValue
+                  interpretation="FittingErrorGreaterThan0.25" value="4"/>
+              </FieldValueType>
+            </ScreeningField>
+          </ScreeningAssertion>
+          <ScreeningAssertion name="Retrieval_WaterPixels" type="RetrievalConditionScreeningAssertion">
+            <hasAttribute>
+              <RetrievalCondition value="WaterPixelsIn10x10Box"/>
+            </hasAttribute>
+            <ScreeningField name="QualityAssuranceLand_RetrievingConditionFlagsWithInversion">
+              <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+              <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+              <Variable name="Quality_Assurance_Land">
+                <Dimension index="0" name="Cell_Along_Swath"/>
+                <Dimension index="1" name="Cell_Across_Swath"/>
+                <Dimension index="2" name="QA_Byte_Land"/>
+              </Variable>
+              <FieldValueType endian="true" hasStartBitIndex="0"
+                hasStartLayerIndex="1" hasStopBitIndex="3"
+                hasStopLayerIndex="1" samplingdim="QA_Byte_Land">
+                <ValidEnumValue interpretation="WaterPixelsIn10x10Box" value="2"/>
+              </FieldValueType>
+            </ScreeningField>
+          </ScreeningAssertion>
+        </OR>
+        <ScreeningAssertion name="Retrieval_CirrusPresent" type="RetrievalConditionScreeningAssertion">
+          <hasAttribute>
+            <RetrievalCondition value="CirrusPresent"/>
+          </hasAttribute>
+          <ScreeningField name="QualityAssuranceLand_RetrievingConditionFlagsWithInversion">
+            <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+            <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+            <Variable name="Quality_Assurance_Land">
+              <Dimension index="0" name="Cell_Along_Swath"/>
+              <Dimension index="1" name="Cell_Across_Swath"/>
+              <Dimension index="2" name="QA_Byte_Land"/>
+            </Variable>
+            <FieldValueType endian="true" hasStartBitIndex="0"
+              hasStartLayerIndex="1" hasStopBitIndex="3"
+              hasStopLayerIndex="1" samplingdim="QA_Byte_Land">
+              <ValidEnumValue interpretation="CirrusPresent" value="3"/>
+            </FieldValueType>
+          </ScreeningField>
+        </ScreeningAssertion>
+      </OR>
+      <ScreeningAssertion name="QualityAssuranceLand_AOTCF47" type="MinimumQualityInterpretationScreeningAssertion">
+        <hasAttribute>
+          <QualityRecommendation value="GOOD"/>
+        </hasAttribute>
+        <ScreeningField name="QualityAssuranceLand_0.47micronAerosolOpticalThicknessConfidenceFlag">
+          <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+          <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+          <Variable name="Quality_Assurance_Land">
+            <Dimension index="0" name="Cell_Along_Swath"/>
+            <Dimension index="1" name="Cell_Across_Swath"/>
+            <Dimension index="2" name="QA_Byte_Land"/>
+          </Variable>
+          <FieldValueType direction="true" endian="true"
+            hasStartBitIndex="5" hasStartLayerIndex="0"
+            hasStopBitIndex="7" hasStopLayerIndex="0" samplingdim="QA_Byte_Land">
+            <ValidQualityLevel interpretation="GOOD" value="2"/>
+          </FieldValueType>
+        </ScreeningField>
+      </ScreeningAssertion>
+    </OR>
+  </Expression>
+</QualityView>
+<QualityView>
+  <Datavar>
+    <Dataset name="MOD04_L2">
+      <Variable name="Corrected_Optical_Depth_Land">
+        <Dimension index="2" length="135" name="Cell_Across_Swath"/>
+        <Dimension index="1" length="204" name="Cell_Along_Swath"/>
+        <Dimension index="0" length="3" name="Solution_3_Land"/>
+      </Variable>
+    </Dataset>
+  </Datavar>
+  <Expression>
+    <OR>
+      <OR>
+        <OR>
+          <ScreeningAssertion name="Retrieval_Fitting25" type="RetrievalConditionScreeningAssertion">
+            <hasAttribute>
+              <RetrievalCondition value="FittingErrorGreaterThan0.25"/>
+            </hasAttribute>
+            <ScreeningField name="QualityAssuranceLand_RetrievingConditionFlagsWithInversion">
+              <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+              <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+              <Variable name="Quality_Assurance_Land">
+                <Dimension index="0" name="Cell_Along_Swath"/>
+                <Dimension index="1" name="Cell_Across_Swath"/>
+                <Dimension index="2" name="QA_Byte_Land"/>
+              </Variable>
+              <FieldValueType endian="true" hasStartBitIndex="0"
+                hasStartLayerIndex="1" hasStopBitIndex="3"
+                hasStopLayerIndex="1" samplingdim="QA_Byte_Land">
+                <ValidEnumValue
+                  interpretation="FittingErrorGreaterThan0.25" value="4"/>
+              </FieldValueType>
+            </ScreeningField>
+          </ScreeningAssertion>
+          <ScreeningAssertion name="Retrieval_WaterPixels" type="RetrievalConditionScreeningAssertion">
+            <hasAttribute>
+              <RetrievalCondition value="WaterPixelsIn10x10Box"/>
+            </hasAttribute>
+            <ScreeningField name="QualityAssuranceLand_RetrievingConditionFlagsWithInversion">
+              <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+              <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+              <Variable name="Quality_Assurance_Land">
+                <Dimension index="0" name="Cell_Along_Swath"/>
+                <Dimension index="1" name="Cell_Across_Swath"/>
+                <Dimension index="2" name="QA_Byte_Land"/>
+              </Variable>
+              <FieldValueType endian="true" hasStartBitIndex="0"
+                hasStartLayerIndex="1" hasStopBitIndex="3"
+                hasStopLayerIndex="1" samplingdim="QA_Byte_Land">
+                <ValidEnumValue interpretation="WaterPixelsIn10x10Box" value="2"/>
+              </FieldValueType>
+            </ScreeningField>
+          </ScreeningAssertion>
+        </OR>
+        <ScreeningAssertion name="Retrieval_CirrusPresent" type="RetrievalConditionScreeningAssertion">
+          <hasAttribute>
+            <RetrievalCondition value="CirrusPresent"/>
+          </hasAttribute>
+          <ScreeningField name="QualityAssuranceLand_RetrievingConditionFlagsWithInversion">
+            <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+            <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+            <Variable name="Quality_Assurance_Land">
+              <Dimension index="0" name="Cell_Along_Swath"/>
+              <Dimension index="1" name="Cell_Across_Swath"/>
+              <Dimension index="2" name="QA_Byte_Land"/>
+            </Variable>
+            <FieldValueType endian="true" hasStartBitIndex="0"
+              hasStartLayerIndex="1" hasStopBitIndex="3"
+              hasStopLayerIndex="1" samplingdim="QA_Byte_Land">
+              <ValidEnumValue interpretation="CirrusPresent" value="3"/>
+            </FieldValueType>
+          </ScreeningField>
+        </ScreeningAssertion>
+      </OR>
+      <ScreeningAssertion name="QualityAssuranceLand_AOTCF47" type="MinimumQualityInterpretationScreeningAssertion">
+        <hasAttribute>
+          <QualityRecommendation value="GOOD"/>
+        </hasAttribute>
+        <ScreeningField name="QualityAssuranceLand_0.47micronAerosolOpticalThicknessConfidenceFlag">
+          <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+          <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+          <Variable name="Quality_Assurance_Land">
+            <Dimension index="0" name="Cell_Along_Swath"/>
+            <Dimension index="1" name="Cell_Across_Swath"/>
+            <Dimension index="2" name="QA_Byte_Land"/>
+          </Variable>
+          <FieldValueType direction="true" endian="true"
+            hasStartBitIndex="5" hasStartLayerIndex="0"
+            hasStopBitIndex="7" hasStopLayerIndex="0" samplingdim="QA_Byte_Land">
+            <ValidQualityLevel interpretation="GOOD" value="2"/>
+          </FieldValueType>
+        </ScreeningField>
+      </ScreeningAssertion>
+    </OR>
+  </Expression>
+</QualityView>
+<QualityView>
+  <Datavar>
+    <Dataset name="MOD04_L2">
+      <Variable name="Angstrom_Exponent_Land">
+        <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+        <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+      </Variable>
+    </Dataset>
+  </Datavar>
+  <Expression>
+    <OR>
+      <OR>
+        <OR>
+          <ScreeningAssertion name="Retrieval_Fitting25" type="RetrievalConditionScreeningAssertion">
+            <hasAttribute>
+              <RetrievalCondition value="FittingErrorGreaterThan0.25"/>
+            </hasAttribute>
+            <ScreeningField name="QualityAssuranceLand_RetrievingConditionFlagsWithInversion">
+              <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+              <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+              <Variable name="Quality_Assurance_Land">
+                <Dimension index="0" name="Cell_Along_Swath"/>
+                <Dimension index="1" name="Cell_Across_Swath"/>
+                <Dimension index="2" name="QA_Byte_Land"/>
+              </Variable>
+              <FieldValueType endian="true" hasStartBitIndex="0"
+                hasStartLayerIndex="1" hasStopBitIndex="3"
+                hasStopLayerIndex="1" samplingdim="QA_Byte_Land">
+                <ValidEnumValue
+                  interpretation="FittingErrorGreaterThan0.25" value="4"/>
+              </FieldValueType>
+            </ScreeningField>
+          </ScreeningAssertion>
+          <ScreeningAssertion name="Retrieval_WaterPixels" type="RetrievalConditionScreeningAssertion">
+            <hasAttribute>
+              <RetrievalCondition value="WaterPixelsIn10x10Box"/>
+            </hasAttribute>
+            <ScreeningField name="QualityAssuranceLand_RetrievingConditionFlagsWithInversion">
+              <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+              <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+              <Variable name="Quality_Assurance_Land">
+                <Dimension index="0" name="Cell_Along_Swath"/>
+                <Dimension index="1" name="Cell_Across_Swath"/>
+                <Dimension index="2" name="QA_Byte_Land"/>
+              </Variable>
+              <FieldValueType endian="true" hasStartBitIndex="0"
+                hasStartLayerIndex="1" hasStopBitIndex="3"
+                hasStopLayerIndex="1" samplingdim="QA_Byte_Land">
+                <ValidEnumValue interpretation="WaterPixelsIn10x10Box" value="2"/>
+              </FieldValueType>
+            </ScreeningField>
+          </ScreeningAssertion>
+        </OR>
+        <ScreeningAssertion name="Retrieval_CirrusPresent" type="RetrievalConditionScreeningAssertion">
+          <hasAttribute>
+            <RetrievalCondition value="CirrusPresent"/>
+          </hasAttribute>
+          <ScreeningField name="QualityAssuranceLand_RetrievingConditionFlagsWithInversion">
+            <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+            <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+            <Variable name="Quality_Assurance_Land">
+              <Dimension index="0" name="Cell_Along_Swath"/>
+              <Dimension index="1" name="Cell_Across_Swath"/>
+              <Dimension index="2" name="QA_Byte_Land"/>
+            </Variable>
+            <FieldValueType endian="true" hasStartBitIndex="0"
+              hasStartLayerIndex="1" hasStopBitIndex="3"
+              hasStopLayerIndex="1" samplingdim="QA_Byte_Land">
+              <ValidEnumValue interpretation="CirrusPresent" value="3"/>
+            </FieldValueType>
+          </ScreeningField>
+        </ScreeningAssertion>
+      </OR>
+      <ScreeningAssertion name="QualityAssuranceLand_AOTCF47" type="MinimumQualityInterpretationScreeningAssertion">
+        <hasAttribute>
+          <QualityRecommendation value="GOOD"/>
+        </hasAttribute>
+        <ScreeningField name="QualityAssuranceLand_0.47micronAerosolOpticalThicknessConfidenceFlag">
+          <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+          <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+          <Variable name="Quality_Assurance_Land">
+            <Dimension index="0" name="Cell_Along_Swath"/>
+            <Dimension index="1" name="Cell_Across_Swath"/>
+            <Dimension index="2" name="QA_Byte_Land"/>
+          </Variable>
+          <FieldValueType direction="true" endian="true"
+            hasStartBitIndex="5" hasStartLayerIndex="0"
+            hasStopBitIndex="7" hasStopLayerIndex="0" samplingdim="QA_Byte_Land">
+            <ValidQualityLevel interpretation="GOOD" value="2"/>
+          </FieldValueType>
+        </ScreeningField>
+      </ScreeningAssertion>
+    </OR>
+  </Expression>
+</QualityView>
+<QualityView>
+  <Datavar>
+    <Dataset name="MOD04_L2">
+      <Variable name="Angstrom_Exponent_1_Ocean">
+        <Dimension index="2" length="135" name="Cell_Across_Swath"/>
+        <Dimension index="1" length="204" name="Cell_Along_Swath"/>
+        <Dimension index="0" length="2" name="Solution_Ocean"/>
+      </Variable>
+    </Dataset>
+  </Datavar>
+  <Expression>
+    <OR>
+      <ScreeningAssertion name="QualityAssuranceOcean_AvgConfFlag" type="MinimumQualityInterpretationScreeningAssertion">
+        <hasAttribute>
+          <QualityRecommendation value="GOOD"/>
+        </hasAttribute>
+        <ScreeningField name="QualityAssuranceOcean_AerosolAvgSolutionConfidenceFlag">
+          <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+          <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+          <Variable name="Quality_Assurance_Ocean">
+            <Dimension index="0" name="Cell_Along_Swath"/>
+            <Dimension index="1" name="Cell_Across_Swath"/>
+            <Dimension index="2" name="QA_Byte_Ocean"/>
+          </Variable>
+          <FieldValueType direction="true" endian="true"
+            hasStartBitIndex="5" hasStartLayerIndex="0"
+            hasStopBitIndex="7" hasStopLayerIndex="0" samplingdim="QA_Byte_Ocean">
+            <ValidQualityLevel interpretation="GOOD" value="2"/>
+          </FieldValueType>
+        </ScreeningField>
+      </ScreeningAssertion>
+    </OR>
+  </Expression>
+</QualityView>
+<QualityView>
+  <Datavar>
+    <Dataset name="MOD04_L2">
+      <Variable name="Angstrom_Exponent_2_Ocean">
+        <Dimension index="2" length="135" name="Cell_Across_Swath"/>
+        <Dimension index="1" length="204" name="Cell_Along_Swath"/>
+        <Dimension index="0" length="2" name="Solution_Ocean"/>
+      </Variable>
+    </Dataset>
+  </Datavar>
+  <Expression>
+    <OR>
+      <ScreeningAssertion name="QualityAssuranceOcean_AvgConfFlag" type="MinimumQualityInterpretationScreeningAssertion">
+        <hasAttribute>
+          <QualityRecommendation value="GOOD"/>
+        </hasAttribute>
+        <ScreeningField name="QualityAssuranceOcean_AerosolAvgSolutionConfidenceFlag">
+          <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+          <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+          <Variable name="Quality_Assurance_Ocean">
+            <Dimension index="0" name="Cell_Along_Swath"/>
+            <Dimension index="1" name="Cell_Across_Swath"/>
+            <Dimension index="2" name="QA_Byte_Ocean"/>
+          </Variable>
+          <FieldValueType direction="true" endian="true"
+            hasStartBitIndex="5" hasStartLayerIndex="0"
+            hasStopBitIndex="7" hasStopLayerIndex="0" samplingdim="QA_Byte_Ocean">
+            <ValidQualityLevel interpretation="GOOD" value="2"/>
+          </FieldValueType>
+        </ScreeningField>
+      </ScreeningAssertion>
+    </OR>
+  </Expression>
+</QualityView>
+<QualityView>
+  <Datavar>
+    <Dataset name="MOD04_L2">
+      <Variable name="Effective_Radius_Ocean">
+        <Dimension index="0" length="2" name="Solution_Ocean"/>
+        <Dimension index="2" length="135" name="Cell_Across_Swath"/>
+        <Dimension index="1" length="204" name="Cell_Along_Swath"/>
+      </Variable>
+    </Dataset>
+  </Datavar>
+  <Expression>
+    <OR>
+      <ScreeningAssertion name="QualityAssuranceOcean_AvgConfFlag" type="MinimumQualityInterpretationScreeningAssertion">
+        <hasAttribute>
+          <QualityRecommendation value="GOOD"/>
+        </hasAttribute>
+        <ScreeningField name="QualityAssuranceOcean_AerosolAvgSolutionConfidenceFlag">
+          <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+          <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+          <Variable name="Quality_Assurance_Ocean">
+            <Dimension index="0" name="Cell_Along_Swath"/>
+            <Dimension index="1" name="Cell_Across_Swath"/>
+            <Dimension index="2" name="QA_Byte_Ocean"/>
+          </Variable>
+          <FieldValueType direction="true" endian="true"
+            hasStartBitIndex="5" hasStartLayerIndex="0"
+            hasStopBitIndex="7" hasStopLayerIndex="0" samplingdim="QA_Byte_Ocean">
+            <ValidQualityLevel interpretation="GOOD" value="2"/>
+          </FieldValueType>
+        </ScreeningField>
+      </ScreeningAssertion>
+    </OR>
+  </Expression>
+</QualityView>
+<QualityView>
+  <Datavar>
+    <Dataset name="MOD04_L2">
+      <Variable name="Optical_Depth_Small_Average_Ocean">
+        <Dimension index="2" length="135" name="Cell_Across_Swath"/>
+        <Dimension index="1" length="204" name="Cell_Along_Swath"/>
+        <Dimension index="0" length="7" name="MODIS_Band_Ocean"/>
+      </Variable>
+    </Dataset>
+  </Datavar>
+  <Expression>
+    <OR>
+      <ScreeningAssertion name="QualityAssuranceOcean_AvgConfFlag" type="MinimumQualityInterpretationScreeningAssertion">
+        <hasAttribute>
+          <QualityRecommendation value="GOOD"/>
+        </hasAttribute>
+        <ScreeningField name="QualityAssuranceOcean_AerosolAvgSolutionConfidenceFlag">
+          <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+          <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+          <Variable name="Quality_Assurance_Ocean">
+            <Dimension index="0" name="Cell_Along_Swath"/>
+            <Dimension index="1" name="Cell_Across_Swath"/>
+            <Dimension index="2" name="QA_Byte_Ocean"/>
+          </Variable>
+          <FieldValueType direction="true" endian="true"
+            hasStartBitIndex="5" hasStartLayerIndex="0"
+            hasStopBitIndex="7" hasStopLayerIndex="0" samplingdim="QA_Byte_Ocean">
+            <ValidQualityLevel interpretation="GOOD" value="2"/>
+          </FieldValueType>
+        </ScreeningField>
+      </ScreeningAssertion>
+    </OR>
+  </Expression>
+</QualityView>
+<QualityView>
+  <Datavar>
+    <Dataset name="MOD04_L2">
+      <Variable name="Effective_Optical_Depth_Average_Ocean">
+        <Dimension index="2" length="135" name="Cell_Across_Swath"/>
+        <Dimension index="1" length="204" name="Cell_Along_Swath"/>
+        <Dimension index="0" length="7" name="MODIS_Band_Ocean"/>
+      </Variable>
+    </Dataset>
+  </Datavar>
+  <Expression>
+    <OR>
+      <ScreeningAssertion name="QualityAssuranceOcean_AvgConfFlag" type="MinimumQualityInterpretationScreeningAssertion">
+        <hasAttribute>
+          <QualityRecommendation value="GOOD"/>
+        </hasAttribute>
+        <ScreeningField name="QualityAssuranceOcean_AerosolAvgSolutionConfidenceFlag">
+          <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+          <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+          <Variable name="Quality_Assurance_Ocean">
+            <Dimension index="0" name="Cell_Along_Swath"/>
+            <Dimension index="1" name="Cell_Across_Swath"/>
+            <Dimension index="2" name="QA_Byte_Ocean"/>
+          </Variable>
+          <FieldValueType direction="true" endian="true"
+            hasStartBitIndex="5" hasStartLayerIndex="0"
+            hasStopBitIndex="7" hasStopLayerIndex="0" samplingdim="QA_Byte_Ocean">
+            <ValidQualityLevel interpretation="GOOD" value="2"/>
+          </FieldValueType>
+        </ScreeningField>
+      </ScreeningAssertion>
+    </OR>
+  </Expression>
+</QualityView>
+<QualityView>
+  <Datavar>
+    <Dataset name="MOD04_L2">
+      <Variable name="Effective_Optical_Depth_Best_Ocean">
+        <Dimension index="2" length="135" name="Cell_Across_Swath"/>
+        <Dimension index="1" length="204" name="Cell_Along_Swath"/>
+        <Dimension index="0" length="7" name="MODIS_Band_Ocean"/>
+      </Variable>
+    </Dataset>
+  </Datavar>
+  <Expression>
+    <OR>
+      <ScreeningAssertion name="QualityAssuranceOcean_BestConfFlag" type="MinimumQualityInterpretationScreeningAssertion">
+        <hasAttribute>
+          <QualityRecommendation value="GOOD"/>
+        </hasAttribute>
+        <ScreeningField name="QualityAssuranceOcean_AerosolBestSolutionConfidenceFlag">
+          <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+          <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+          <Variable name="Quality_Assurance_Ocean">
+            <Dimension index="0" name="Cell_Along_Swath"/>
+            <Dimension index="1" name="Cell_Across_Swath"/>
+            <Dimension index="2" name="QA_Byte_Ocean"/>
+          </Variable>
+          <FieldValueType direction="true" endian="true"
+            hasStartBitIndex="1" hasStartLayerIndex="0"
+            hasStopBitIndex="3" hasStopLayerIndex="0" samplingdim="QA_Byte_Ocean">
+            <ValidQualityLevel interpretation="GOOD" value="2"/>
+          </FieldValueType>
+        </ScreeningField>
+      </ScreeningAssertion>
+    </OR>
+  </Expression>
+</QualityView>
+<QualityView>
+  <Datavar>
+    <Dataset name="MOD04_L2">
+      <Variable name="Optical_Depth_Small_Best_Ocean">
+        <Dimension index="2" length="135" name="Cell_Across_Swath"/>
+        <Dimension index="1" length="204" name="Cell_Along_Swath"/>
+        <Dimension index="0" length="7" name="MODIS_Band_Ocean"/>
+      </Variable>
+    </Dataset>
+  </Datavar>
+  <Expression>
+    <OR>
+      <ScreeningAssertion name="QualityAssuranceOcean_AvgConfFlag" type="MinimumQualityInterpretationScreeningAssertion">
+        <hasAttribute>
+          <QualityRecommendation value="GOOD"/>
+        </hasAttribute>
+        <ScreeningField name="QualityAssuranceOcean_AerosolAvgSolutionConfidenceFlag">
+          <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+          <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+          <Variable name="Quality_Assurance_Ocean">
+            <Dimension index="0" name="Cell_Along_Swath"/>
+            <Dimension index="1" name="Cell_Across_Swath"/>
+            <Dimension index="2" name="QA_Byte_Ocean"/>
+          </Variable>
+          <FieldValueType direction="true" endian="true"
+            hasStartBitIndex="5" hasStartLayerIndex="0"
+            hasStopBitIndex="7" hasStopLayerIndex="0" samplingdim="QA_Byte_Ocean">
+            <ValidQualityLevel interpretation="GOOD" value="2"/>
+          </FieldValueType>
+        </ScreeningField>
+      </ScreeningAssertion>
+    </OR>
+  </Expression>
+</QualityView>
+<QualityView>
+  <Datavar>
+    <Dataset name="MOD04_L2">
+      <Variable name="Deep_Blue_Single_Scattering_Albedo_Land">
+        <Dimension index="1" length="204" name="Cell_Along_Swath"/>
+        <Dimension index="2" length="135" name="Cell_Across_Swath"/>
+        <Dimension index="0" length="3" name="Num_DeepBlue_Wavelengths"/>
+      </Variable>
+    </Dataset>
+  </Datavar>
+  <Expression>
+    <OR>
+      <ScreeningAssertion name="QualityAssuranceLand_DeepBlueAConfFlag" type="MinimumQualityInterpretationScreeningAssertion">
+        <hasAttribute>
+          <QualityRecommendation value="GOOD"/>
+        </hasAttribute>
+        <ScreeningField name="QualityAssuranceLand_DeepBlueACFlag">
+          <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+          <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+          <Dimension index="2" length="5" name="QA_Byte_Land"/>
+          <Variable name="Quality_Assurance_Land">
+            <Dimension index="0" name="Cell_Along_Swath"/>
+            <Dimension index="1" name="Cell_Across_Swath"/>
+            <Dimension index="2" name="QA_Byte_Land"/>
+          </Variable>
+          <FieldValueType direction="true" endian="true"
+            hasStartBitIndex="1" hasStartLayerIndex="4"
+            hasStopBitIndex="2" hasStopLayerIndex="4" samplingdim="QA_Byte_Land">
+            <ValidQualityLevel interpretation="GOOD" value="2"/>
+          </FieldValueType>
+        </ScreeningField>
+      </ScreeningAssertion>
+    </OR>
+  </Expression>
+</QualityView>
+<QualityView>
+  <Datavar>
+    <Dataset name="MOD04_L2">
+      <Variable name="Deep_Blue_Angstrom_Exponent_Land">
+        <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+        <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+      </Variable>
+    </Dataset>
+  </Datavar>
+  <Expression>
+    <OR>
+      <ScreeningAssertion name="QualityAssuranceLand_DeepBlueAConfFlag" type="MinimumQualityInterpretationScreeningAssertion">
+        <hasAttribute>
+          <QualityRecommendation value="GOOD"/>
+        </hasAttribute>
+        <ScreeningField name="QualityAssuranceLand_DeepBlueACFlag">
+          <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+          <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+          <Dimension index="2" length="5" name="QA_Byte_Land"/>
+          <Variable name="Quality_Assurance_Land">
+            <Dimension index="0" name="Cell_Along_Swath"/>
+            <Dimension index="1" name="Cell_Across_Swath"/>
+            <Dimension index="2" name="QA_Byte_Land"/>
+          </Variable>
+          <FieldValueType direction="true" endian="true"
+            hasStartBitIndex="1" hasStartLayerIndex="4"
+            hasStopBitIndex="2" hasStopLayerIndex="4" samplingdim="QA_Byte_Land">
+            <ValidQualityLevel interpretation="GOOD" value="2"/>
+          </FieldValueType>
+        </ScreeningField>
+      </ScreeningAssertion>
+    </OR>
+  </Expression>
+</QualityView>
+<QualityView>
+  <Datavar>
+    <Dataset name="MOD04_L2">
+      <Variable name="Deep_Blue_Aerosol_Optical_Depth_550_Land">
+        <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+        <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+      </Variable>
+    </Dataset>
+  </Datavar>
+  <Expression>
+    <OR>
+      <ScreeningAssertion name="QualityAssuranceLand_DeepBlueAConfFlag" type="MinimumQualityInterpretationScreeningAssertion">
+        <hasAttribute>
+          <QualityRecommendation value="GOOD"/>
+        </hasAttribute>
+        <ScreeningField name="QualityAssuranceLand_DeepBlueACFlag">
+          <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+          <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+          <Dimension index="2" length="5" name="QA_Byte_Land"/>
+          <Variable name="Quality_Assurance_Land">
+            <Dimension index="0" name="Cell_Along_Swath"/>
+            <Dimension index="1" name="Cell_Across_Swath"/>
+            <Dimension index="2" name="QA_Byte_Land"/>
+          </Variable>
+          <FieldValueType direction="true" endian="true"
+            hasStartBitIndex="1" hasStartLayerIndex="4"
+            hasStopBitIndex="2" hasStopLayerIndex="4" samplingdim="QA_Byte_Land">
+            <ValidQualityLevel interpretation="GOOD" value="2"/>
+          </FieldValueType>
+        </ScreeningField>
+      </ScreeningAssertion>
+    </OR>
+  </Expression>
+</QualityView>
+<QualityView>
+  <Datavar>
+    <Dataset name="MOD04_L2">
+      <Variable name="Deep_Blue_Aerosol_Optical_Depth_Land">
+        <Dimension index="0" length="3" name="Num_DeepBlue_Wavelengths"/>
+        <Dimension index="1" length="204" name="Cell_Along_Swath"/>
+        <Dimension index="2" length="135" name="Cell_Across_Swath"/>
+      </Variable>
+    </Dataset>
+  </Datavar>
+  <Expression>
+    <OR>
+      <ScreeningAssertion name="QualityAssuranceLand_DeepBlueAConfFlag" type="MinimumQualityInterpretationScreeningAssertion">
+        <hasAttribute>
+          <QualityRecommendation value="GOOD"/>
+        </hasAttribute>
+        <ScreeningField name="QualityAssuranceLand_DeepBlueACFlag">
+          <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+          <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+          <Dimension index="2" length="5" name="QA_Byte_Land"/>
+          <Variable name="Quality_Assurance_Land">
+            <Dimension index="0" name="Cell_Along_Swath"/>
+            <Dimension index="1" name="Cell_Across_Swath"/>
+            <Dimension index="2" name="QA_Byte_Land"/>
+          </Variable>
+          <FieldValueType direction="true" endian="true"
+            hasStartBitIndex="1" hasStartLayerIndex="4"
+            hasStopBitIndex="2" hasStopLayerIndex="4" samplingdim="QA_Byte_Land">
+            <ValidQualityLevel interpretation="GOOD" value="2"/>
+          </FieldValueType>
+        </ScreeningField>
+      </ScreeningAssertion>
+    </OR>
+  </Expression>
+</QualityView>
+
+</root>

@@ -1,0 +1,26 @@
+ DATE: January 2012
+   PROJECT:      DQSS
+   PROJECT LEAD: Chris Lynnes
+   AUTHOR:      Richard Strub  GES-DISC
+                        richard.f.strub@nasa.gov
+                        301-614-5293
+   PURPOSE: How to run DQSS
+
+Set your JAVA_HOME environment variable 
+perhaps /usr  or  /usr/java/jdk1.6.0_32
+
+Scripts:
+These scripts runs DQSS with 64 bit HDFView libraries that come with this package.
+If you need to recompile or want more details refer to README_BATCH
+
+Under the MODIS AIRS and MLS directories you will find:
+
+runWithOntologyXML.csh - This script runs DQSS with pre-defined XML files under the ./testing directory.
+                         The script contains examples on how to run from command line
+
+
+runUsingOntologyURL.csh  This script runs DQSS with using the DQSS Ontology. If the servlet interface
+			 is not available then it will use classes in onboardinterface.jar
+                         The servlet interface requires ONTOLOGYURL in dqss.config to be set correctly
+                         The onboard interface requires ONTOLOGY and ONBOARDPROPERTIES in dqss.config to be set correctly
+                         The script contains examples on how to run from command line. You will have to uncomment the line you want to run.

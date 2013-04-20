@@ -1,0 +1,4 @@
+#Mon Jun 21 11:40:06 EDT 2010
+gov.nasa.gsfc.dqss.castor.Root=gov.nasa.gsfc.dqss.castor.descriptors.RootDescriptor
+gov.nasa.gsfc.dqss.castor.QueryOutput=gov.nasa.gsfc.dqss.castor.descriptors.QueryOutputDescriptor
+gov.nasa.gsfc.dqss.castor.DQSSMaskerMsg=gov.nasa.gsfc.dqss.castor.descriptors.DQSSMaskerMsgDescriptor

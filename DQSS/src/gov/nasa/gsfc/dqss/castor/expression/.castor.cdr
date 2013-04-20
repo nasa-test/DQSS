@@ -1,0 +1,26 @@
+#Thu Aug 02 13:55:05 EDT 2012
+gov.nasa.gsfc.dqss.castor.expression.Variable=gov.nasa.gsfc.dqss.castor.expression.descriptors.VariableDescriptor
+gov.nasa.gsfc.dqss.castor.expression.ScreeningField=gov.nasa.gsfc.dqss.castor.expression.descriptors.ScreeningFieldDescriptor
+gov.nasa.gsfc.dqss.castor.expression.RetrievalCondition=gov.nasa.gsfc.dqss.castor.expression.descriptors.RetrievalConditionDescriptor
+gov.nasa.gsfc.dqss.castor.expression.HasMinThreshold=gov.nasa.gsfc.dqss.castor.expression.descriptors.HasMinThresholdDescriptor
+gov.nasa.gsfc.dqss.castor.expression.Root=gov.nasa.gsfc.dqss.castor.expression.descriptors.RootDescriptor
+gov.nasa.gsfc.dqss.castor.expression.Expression=gov.nasa.gsfc.dqss.castor.expression.descriptors.ExpressionDescriptor
+gov.nasa.gsfc.dqss.castor.expression.Dimension=gov.nasa.gsfc.dqss.castor.expression.descriptors.DimensionDescriptor
+gov.nasa.gsfc.dqss.castor.expression.ValidQualityLevel=gov.nasa.gsfc.dqss.castor.expression.descriptors.ValidQualityLevelDescriptor
+gov.nasa.gsfc.dqss.castor.expression.ORItem=gov.nasa.gsfc.dqss.castor.expression.descriptors.ORItemDescriptor
+gov.nasa.gsfc.dqss.castor.expression.HasAttributeChoice=gov.nasa.gsfc.dqss.castor.expression.descriptors.HasAttributeChoiceDescriptor
+gov.nasa.gsfc.dqss.castor.expression.Dataset=gov.nasa.gsfc.dqss.castor.expression.descriptors.DatasetDescriptor
+gov.nasa.gsfc.dqss.castor.expression.SurfaceTypeValue=gov.nasa.gsfc.dqss.castor.expression.descriptors.SurfaceTypeValueDescriptor
+gov.nasa.gsfc.dqss.castor.expression.AND=gov.nasa.gsfc.dqss.castor.expression.descriptors.ANDDescriptor
+gov.nasa.gsfc.dqss.castor.expression.ScreeningAssertion=gov.nasa.gsfc.dqss.castor.expression.descriptors.ScreeningAssertionDescriptor
+gov.nasa.gsfc.dqss.castor.expression.FieldValueType=gov.nasa.gsfc.dqss.castor.expression.descriptors.FieldValueTypeDescriptor
+gov.nasa.gsfc.dqss.castor.expression.MinimumQualityInterpretation=gov.nasa.gsfc.dqss.castor.expression.descriptors.MinimumQualityInterpretationDescriptor
+gov.nasa.gsfc.dqss.castor.expression.OR=gov.nasa.gsfc.dqss.castor.expression.descriptors.ORDescriptor
+gov.nasa.gsfc.dqss.castor.expression.SurfaceType=gov.nasa.gsfc.dqss.castor.expression.descriptors.SurfaceTypeDescriptor
+gov.nasa.gsfc.dqss.castor.expression.ValidEnumValue=gov.nasa.gsfc.dqss.castor.expression.descriptors.ValidEnumValueDescriptor
+gov.nasa.gsfc.dqss.castor.expression.NOT=gov.nasa.gsfc.dqss.castor.expression.descriptors.NOTDescriptor
+gov.nasa.gsfc.dqss.castor.expression.HasAttribute=gov.nasa.gsfc.dqss.castor.expression.descriptors.HasAttributeDescriptor
+gov.nasa.gsfc.dqss.castor.expression.Datavar=gov.nasa.gsfc.dqss.castor.expression.descriptors.DatavarDescriptor
+gov.nasa.gsfc.dqss.castor.expression.HasMaxThreshold=gov.nasa.gsfc.dqss.castor.expression.descriptors.HasMaxThresholdDescriptor
+gov.nasa.gsfc.dqss.castor.expression.QualityView=gov.nasa.gsfc.dqss.castor.expression.descriptors.QualityViewDescriptor
+gov.nasa.gsfc.dqss.castor.expression.QualityRecommendation=gov.nasa.gsfc.dqss.castor.expression.descriptors.QualityRecommendationDescriptor

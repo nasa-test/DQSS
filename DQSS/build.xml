@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <project name="dqssMasker" basedir="." default="jvmenv">
+
+
+        <property file="build.properties" />
+
+        <property name="build.dir" value="build" />
+
+        <property name="lib.dir" value="lib" />
+        <!-- create a softlink from hdflibs dir you want to one of these: -->
+        <property name="lib4.2.5_32.dir" value="lib/hdf4.2.5/32bit" />
+        <property name="lib4.2.5_64.dir" value="lib/hdf4.2.5/64bit" />
+        <property name="lib4.2.2.dir" value="lib/hdf4.2.2" />
+
+        <property name="src.dir" value="src" />
+
+        <path id="classpath.build">
+                <fileset dir="${lib.dir}">
+                        <include name="*.jar" />
+                </fileset>
+                <fileset dir="${hdflib}">
+                        <include name="*.jar" />
+                </fileset>
+        </path>
+
+        <!-- default target: -->
+	<target name="jvmenv" depends="init">
+		<exec dir="" executable="javac" outputproperty="command.output">
+		   <arg line="-d32"/>
+		   <arg line="-nowarn"/>
+		</exec>
+	    <echo>${command.output}</echo>
+	    <condition property="condition">
+		<contains string="${command.output}" substring="not support"/>
+	    </condition>
+	    <antcall target="then"/>
+	    <antcall target="else"/>
+	  </target>
+
+	  <target name="then" if="condition">
+	    <echo>javac points to a 64 bit jvm because 32 bit javac -d32 return contained "not supported" </echo>
+            <property name="hdflib" value="${lib4.2.5_64.dir}"/>
+            <echo> hdflib: ${hdflib} </echo>
+            <antcall target="compile"/>
+	  </target>
+
+	  <target name="else" unless="condition">
+	    <condition property="oldjars-condition">
+		<contains string="${oldlibs}" substring="true"/>
+	    </condition>
+	    <antcall target="oldjars"/>
+            <antcall target="newjars"/>
+	  </target>
+
+	  <target name="oldjars" if="oldjars-condition">
+	    <echo>"User has set oldlibs property to true so using hdflibs version 4.2.2" </echo>
+            <property name="hdflib" value="${lib4.2.2.dir}"/>
+            <antcall target="compile"/>
+	  </target>
+	  <target name="newjars" unless="oldjars-condition">
+	    <echo>"User has not set oldlibs property so using hdflibs version 4.2.5" </echo>
+            <property name="hdflib" value="${lib4.2.5_32.dir}"/>
+            <antcall target="compile"/>
+	  </target>
+
+
+        <target name="init">
+                <!-- if this doesn't run, add . to your path set PATH=.:$PATH -->
+		<exec dir="" executable="./expr_remove.csh" outputproperty="remove.output"/>
+	        <echo>${remove.output}</echo>
+                <echo>Creating directories:${build.dir}/classes </echo>
+                <mkdir dir="${build.dir}" />
+                <mkdir dir="${build.dir}/classes" />
+        </target>
+
+        <target name="compile" depends="">
+                <javac srcdir="${src.dir}" destdir="${build.dir}/classes" classpathref="classpath.build" />
+                <!-- so that jar isn't the calling process and it can use jvmenv's hdflib -->
+                <antcall target="jar"/>
+        </target>
+
+ 	 <!-- BUILD THE JAR FILE -->
+ 	        <target name="jar" depends="">
+                        <echo> Using hdflib ${hdflib} </echo>
+ 	                <jar destfile="${build.dir}/${ant.project.name}.jar">
+ 	                        <fileset dir="${build.dir}/classes/" />                      
+<!--
+				<zipgroupfileset dir="${lib.dir}" includes="*.jar" />
+-->
+				<zipgroupfileset dir="${lib.dir}">
+					<include name="jena-2.6.3.jar"/>
+					<include name="arq-2.8.4.jar"/>
+					<include name="xercesImpl-2.7.1.jar"/>
+					<include name="iri-0.8.jar"/>
+					<include name="icu4j-3.4.4.jar"/>
+					<include name="slf4j-api-1.5.8.jar"/>
+					<include name="log4j-1.2.13.jar"/>
+					<include name="slf4j-log4j12-1.5.8.jar"/>
+					<include name="castor-1.3.1-core.jar"/>
+					<include name="castor-1.3.1-codegen.jar"/>
+					<include name="castor-1.3.1-xml.jar"/>
+					<include name="castor-1.3.1-xml-schema.jar"/>
+					<include name="castor-1.3.1-jdo.jar"/>
+					<include name="ontologyInterface.jar"/>
+					<include name="commons-logging-1.1.jar"/>
+					<include name="DataFetcher.jar"/>
+					<include name="jcs-1.3.3.5-RC.jar"/>
+					<include name="concurrent.jar"/>
+
+			         </zipgroupfileset>		
+                                 <zipgroupfileset dir="${hdflib}">
+					<include name="jhdf.jar"/>
+					<include name="jhdfobj.jar"/>
+					<include name="jhdf4.jar"/>
+					<include name="jhdf4obj.jar"/>
+					<include name="jhdf5.jar"/>
+					<include name="jhdf5obj.jar"/>
+			         </zipgroupfileset>		
+ 	                </jar>
+ 	        </target>
+ </project>
+                                                                                                                                        

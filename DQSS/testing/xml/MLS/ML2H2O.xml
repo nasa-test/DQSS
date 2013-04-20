@@ -1,0 +1,187 @@
+<Root>
+<QualityView>
+  <Datavar>
+    <Dataset name="ML2H2O">
+      <Variable name="H2O">
+        <Dimension index="0" name="nTimes"/>
+        <Dimension index="1" name="nLevels"/>
+      </Variable>
+    </Dataset>
+  </Datavar>
+  <Expression>
+    <OR>
+      <OR>
+        <OR>
+          <OR>
+            <OR>
+              <OR>
+                <OR>
+                  <AND>
+                    <ScreeningAssertion name="PressureStatus" type="ThresholdScreeningAssertion">
+                      <hasAttribute>
+                        <hasMaxThreshold value="100"/>
+                      </hasAttribute>
+                      <ScreeningField name="H2O_PressureField">
+                        <Dimension index="0" name="nLevels"/>
+                        <Variable name="Pressure">
+                          <Dimension index="0" name="nLevels"/>
+                        </Variable>
+                        <FieldValueType endian="" hasStartBitIndex=""
+                          hasStartLayerIndex="0" hasStopBitIndex=""
+                          hasStopLayerIndex="0" samplingdim="None"/>
+                      </ScreeningField>
+                    </ScreeningAssertion>
+                    <ScreeningAssertion name="Status_LowCloudBits" type="RetrievalConditionScreeningAssertion">
+                      <hasAttribute>
+                        <RetrievalCondition value="Low_Altitude_Clouds"/>
+                      </hasAttribute>
+                      <ScreeningField name="H2O_Status_LowCloudField">
+                        <Dimension index="0" name="nTimes"/>
+                        <Variable name="Status">
+                          <Dimension index="0" name="nTimes"/>
+                        </Variable>
+                        <FieldValueType endian="false"
+                          hasStartBitIndex="5" hasStartLayerIndex="0"
+                          hasStopBitIndex="5" hasStopLayerIndex="0" samplingdim="None">
+                          <ValidEnumValue
+                            interpretation="Low_Altitude_Clouds" value="1"/>
+                        </FieldValueType>
+                      </ScreeningField>
+                    </ScreeningAssertion>
+                  </AND>
+                  <AND>
+                    <ScreeningAssertion name="PressureStatus" type="ThresholdScreeningAssertion">
+                      <hasAttribute>
+                        <hasMaxThreshold value="100"/>
+                      </hasAttribute>
+                      <ScreeningField name="H2O_PressureField">
+                        <Dimension index="0" name="nLevels"/>
+                        <Variable name="Pressure">
+                          <Dimension index="0" name="nLevels"/>
+                        </Variable>
+                        <FieldValueType endian="" hasStartBitIndex=""
+                          hasStartLayerIndex="0" hasStopBitIndex=""
+                          hasStopLayerIndex="0" samplingdim="None"/>
+                      </ScreeningField>
+                    </ScreeningAssertion>
+                    <ScreeningAssertion name="Status_HighCloudBits" type="RetrievalConditionScreeningAssertion">
+                      <hasAttribute>
+                        <RetrievalCondition value="High_Altitude_Clouds"/>
+                      </hasAttribute>
+                      <ScreeningField name="H2O_Status_HighCloudField">
+                        <Dimension index="0" name="nTimes"/>
+                        <Variable name="Status">
+                          <Dimension index="0" name="nTimes"/>
+                        </Variable>
+                        <FieldValueType endian="true"
+                          hasStartBitIndex="4" hasStartLayerIndex="0"
+                          hasStopBitIndex="4" hasStopLayerIndex="0" samplingdim="None">
+                          <ValidEnumValue
+                            interpretation="High_Altitude_Clouds" value="1"/>
+                        </FieldValueType>
+                      </ScreeningField>
+                    </ScreeningAssertion>
+                  </AND>
+                </OR>
+                <ScreeningAssertion name="MixingRatioMinimum_SA" type="ThresholdScreeningAssertion">
+                  <hasAttribute>
+                    <hasMinThreshold value=".00000009"/>
+                  </hasAttribute>
+                  <ScreeningField name="H2O_sf">
+                    <Dimension index="1" name="nLevels"/>
+                    <Dimension index="0" name="nTimes"/>
+                    <Variable name="H2O">
+                      <Dimension index="1" name="nLevels"/>
+                      <Dimension index="0" name="nTimes"/>
+                    </Variable>
+                    <FieldValueType endian="" hasStartBitIndex=""
+                      hasStartLayerIndex="0" hasStopBitIndex=""
+                      hasStopLayerIndex="0" samplingdim="None"/>
+                  </ScreeningField>
+                </ScreeningAssertion>
+              </OR>
+              <ScreeningAssertion name="L2gpPrecision_SA" type="ThresholdScreeningAssertion">
+                <hasAttribute>
+                  <hasMinThreshold value="0"/>
+                </hasAttribute>
+                <ScreeningField name="L2gpPrecisionField">
+                  <Dimension index="1" name="nLevels"/>
+                  <Dimension index="0" name="nTimes"/>
+                  <Variable name="L2gpPrecision">
+                    <Dimension index="1" name="nLevels"/>
+                    <Dimension index="0" name="nTimes"/>
+                  </Variable>
+                  <FieldValueType endian="" hasStartBitIndex=""
+                    hasStartLayerIndex="0" hasStopBitIndex=""
+                    hasStopLayerIndex="0" samplingdim="None"/>
+                </ScreeningField>
+              </ScreeningAssertion>
+            </OR>
+            <ScreeningAssertion name="Status_BadProfile" type="RetrievalConditionScreeningAssertion">
+              <hasAttribute>
+                <RetrievalCondition value="DoNotUseThisProfile"/>
+              </hasAttribute>
+              <ScreeningField name="H2O_Status_BadProfileField">
+                <Dimension index="0" name="nTimes"/>
+                <Variable name="Status">
+                  <Dimension index="0" name="nTimes"/>
+                </Variable>
+                <FieldValueType endian="true" hasStartBitIndex="0"
+                  hasStartLayerIndex="0" hasStopBitIndex="0"
+                  hasStopLayerIndex="0" samplingdim="None">
+                  <ValidEnumValue interpretation="DoNotUseThisProfile" value="1"/>
+                </FieldValueType>
+              </ScreeningField>
+            </ScreeningAssertion>
+          </OR>
+          <ScreeningAssertion name="H2O_Convergence" type="ThresholdScreeningAssertion">
+            <hasAttribute>
+              <hasMaxThreshold value="2.0"/>
+            </hasAttribute>
+            <ScreeningField name="H2O_ConvergenceField">
+              <Dimension index="0" name="nTimes"/>
+              <Variable name="Convergence">
+                <Dimension index="0" name="nTimes"/>
+              </Variable>
+              <FieldValueType endian="" hasStartBitIndex=""
+                hasStartLayerIndex="0" hasStopBitIndex=""
+                hasStopLayerIndex="0" samplingdim="None"/>
+            </ScreeningField>
+          </ScreeningAssertion>
+        </OR>
+        <ScreeningAssertion name="PressureLimits" type="ThresholdScreeningAssertion">
+          <hasAttribute>
+            <hasMinThreshold value=".002"/>
+            <hasMaxThreshold value="383"/>
+          </hasAttribute>
+          <ScreeningField name="H2O_Pressure_BoundariesField">
+            <Dimension index="0" name="nLevels"/>
+            <Variable name="Pressure">
+              <Dimension index="0" name="nLevels"/>
+            </Variable>
+            <FieldValueType endian="" hasStartBitIndex=""
+              hasStartLayerIndex="0" hasStopBitIndex=""
+              hasStopLayerIndex="0" samplingdim="None"/>
+          </ScreeningField>
+        </ScreeningAssertion>
+      </OR>
+      <ScreeningAssertion name="H2O_Quality" type="MinimumQualityInterpretationScreeningAssertion">
+        <hasAttribute>
+          <QualityRecommendation value="ExtantProfiles95pct"/>
+        </hasAttribute>
+        <ScreeningField name="H2O_QualityLevel">
+          <Dimension index="0" name="nTimes"/>
+          <Variable name="Quality">
+            <Dimension index="0" name="nTimes"/>
+          </Variable>
+          <FieldValueType direction="true" endian="" hasStartBitIndex=""
+            hasStartLayerIndex="0" hasStopBitIndex=""
+            hasStopLayerIndex="0" samplingdim="None">
+            <ValidQualityLevel interpretation="ExtantProfiles95pct" value="1.43"/>
+          </FieldValueType>
+        </ScreeningField>
+      </ScreeningAssertion>
+    </OR>
+  </Expression>
+</QualityView>
+</Root>

@@ -1,0 +1,101 @@
+   DATE: January 2012
+   PROJECT:      DQSS
+   PROJECT LEAD: Chris Lynnes
+   AUTHOR: 	Richard Strub  GES-DISC
+			richard.f.strub@nasa.gov
+			301-614-5293	
+   PURPOSE: Describe how to compile, test, and run DQSS in batch mode 
+
+   Prerequisites:
+   -------------
+   DQSS needs the jar and .so files distributed with HDFView:
+   look for files like these on your system: jhdf.jar  jhdf4obj.jar  jhdf5.jar  jhdf5obj.jar  jhdfobj.jar 
+   Or download HDFView from:
+   http://www.hdfgroup.org/hdf-java-html/hdfview/index.html#download_hdfview
+   Then set expr_remove.csh to point to the location of your hdfview libs.
+   
+
+   To compile:
+   -----------
+   setenv JAVA_HOME
+     find the Java compiler/project builder, Ant, on your system
+     find java and javac on your system 
+      and put them in your system path ( or edit script)
+     run ant (no arguments - and the build.xml is in the DQSS directory)
+
+   This will create a dqssMasker.jar under the DQSS/build directory. 
+    It will build a 32 or 64 bit version depending on your Java VM.
+
+   To do a test run of the code:
+   -----------------------------   
+   setenv JAVA_HOME
+     Edit the runWithOntologyXML.csh file:
+       set arch = "64bit" (or 32bit depending on your system)
+     find the samples and INPUT_XMLS dirs and run using any of the MOD04 hdf files :
+       ./runWithOntologyXML.csh samples/MYD04_L2.A2011328.1205.051.2011329172052.hdf  ./testing/xml/M_D04/GOOD.xml
+       ./runWithOntologyXML.csh samples/MOD05_L2.A2007074.0840.005.2007105042354.hdf  ./testing/xml/M_D05/GoodProbClear.xml
+       ./runWithOntologyXML.csh samples/MLS-Aura_L2GP-H2O_v03-33-c01_2011d285.he5     ./testing/xml/MLS/ML2H2O.xml
+       ./runWithOntologyXML.csh samples/MLS-Aura_L2GP-O3_v03-33-c01_2012d062.he5      ./testing/xml/MLS/ML2O3.xml
+                               
+        (input xml file needs to start with slash)
+     The 4 test XML files represent uniform, increasing screening
+       of all of the variables: 
+       NOSCR.xml, MARGINAL.xml, GOOD.xml, VERY_GOOD.xml
+       In accordance with the output example below, the 'after screening' 
+        percentage should be the same as the first for all variables when using 
+        NOSCR.xml, and descreasing or remaining the same with 
+        MARGINAL.xml, GOOD.xml, and finally VERY_GOOD.xml
+
+   Log appears under the CWD, or in this case, 
+   To verify successful run:
+   ------------------------
+	   grep the log for ERROR. 
+       do an ascii dump of the screened file and | egrep "filtered|Non-fill":
+
+    "Corrected_Optical_Depth_Land_wav2p1 was filtered using Quality_Assurance_Land based on 3(VERY_GOOD).\n",
+    "Corrected_Optical_Depth_Land_wav2p1 was filtered using Quality_Assurance_Land(WaterPixelsIn10x10Box, FittingErrorGreaterThan0.25, CirrusPresent).\n",
+    "  Non-fill data before screening: 0.36%; after screening 0.04%.\n",
+    "Corrected_Optical_Depth_Land was filtered using Quality_Assurance_Land based on 3(VERY_GOOD).\n",
+    "Corrected_Optical_Depth_Land was filtered using Quality_Assurance_Land(WaterPixelsIn10x10Box, FittingErrorGreaterThan0.25, CirrusPresent).\n",
+    "  Non-fill data before screening: 0.42%; after screening 0.04%.\n",
+    "Angstrom_Exponent_Land was filtered using Quality_Assurance_Land based on 3(VERY_GOOD).\n",
+    "Angstrom_Exponent_Land was filtered using Quality_Assurance_Land(WaterPixelsIn10x10Box, FittingErrorGreaterThan0.25, CirrusPresent).\n",
+    "  Non-fill data before screening: 0.36%; after screening 0.04%.\n",
+    "Angstrom_Exponent_1_Ocean was filtered using Quality_Assurance_Ocean based on 3(VERY_GOOD).\n",
+    "  Non-fill data before screening: 24.29%; after screening 11.37%.\n",
+    "Angstrom_Exponent_2_Ocean was filtered using Quality_Assurance_Ocean based on 3(VERY_GOOD).\n",
+    "  Non-fill data before screening: 24.29%; after screening 11.37%.\n",
+    ...
+    (Percentage should be less after screening than before)
+
+   Debugging:
+ 		Log: src/DQSSMasker.log (CWD)
+        Log Config: ./dqsslog.conf
+
+
+   To run in an operational environment
+   ------------------------------------
+   setenv JAVA_HOME
+   Edit run.csh to integrate into your environment.  
+    run.csh is much closer to a batch script than runWithOntologyXML.csh.
+
+   Note: 
+	 if basename, hrepack or ncdump may not run on your system:
+        Edit these two lines in your ./runWithOntologyXML.csh:
+        	set ncdump  = $top/bin/$arch/ncdump
+        	set hrepack = $top/bin/$arch/hrepack
+            set basename = /bin/basename
+     	find the hrepack (an hdf command-line tool already installed on your 
+         system and use that one)
+		find a utility which will dump an hdf4 file to ASCII and use that instead.
+		hrepack is part of the OPS procedure, ncdump is not.
+
+   Logging: ./dqsslog.conf 
+ `		The line log4j.appender.A1.File=DQSSMasker.log writes the log to the 
+        current working directory of the script. A good operational procedure is to
+        set the staging directory like this:
+           set dirpart = `/bin/date +"%m%d%y%H%M%S"`$$
+           set stagingdir = /var/tmp/DQSS_PROCESS/OPS/$dirpart
+        and then cd to the staging directory before the first java command.
+        Then the log file resides with the input and output files.
+   

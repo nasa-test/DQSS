@@ -1,0 +1,56 @@
+<root>
+<QualityView>
+  <Datavar>
+    <Dataset name="MOD05_L2">
+      <Variable name="Water_Vapor_Near_Infrared">
+        <Dimension index="2" length="1" name="QA_Bytes_NIR"/>
+        <Dimension index="1" length="1354" name="Cell_Across_Swath_1km"/>
+        <Dimension index="0" length="2030" name="Cell_Along_Swath_1km"/>
+      </Variable>
+    </Dataset>
+  </Datavar>
+  <Expression>
+    <OR>
+      <ScreeningAssertion name="WaterVaporQAPrecipWaterConfidence" type="MinimumQualityInterpretationScreeningAssertion">
+        <hasAttribute>
+          <QualityRecommendation value="GOOD"/>
+        </hasAttribute>
+        <ScreeningField name="NIRTotalPrecipitalWaterConfidenceFlag">
+          <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+          <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+          <Dimension index="2" length="1" name="QA_Bytes_NIR"/>
+          <Variable name="Quality_Assurance_Near_Infrared">
+            <Dimension index="2" name="QA_Bytes_NIR"/>
+            <Dimension index="1" name="Cell_Across_Swath"/>
+            <Dimension index="0" name="Cell_Along_Swath"/>
+          </Variable>
+          <FieldValueType direction="true" endian="true"
+            hasStartBitIndex="1" hasStartLayerIndex="0"
+            hasStopBitIndex="3" hasStopLayerIndex="0" samplingdim="QA_Bytes_NIR">
+            <ValidQualityLevel interpretation="GOOD" value="2"/>
+          </FieldValueType>
+        </ScreeningField>
+      </ScreeningAssertion>
+      <ScreeningAssertion name="WaterVaporCloudiness" type="MinimumQualityInterpretationScreeningAssertion">
+        <hasAttribute>
+          <QualityRecommendation value="ProbablyClear"/>
+        </hasAttribute>
+        <ScreeningField name="CloudMaskQA_CloudinessFlag">
+          <Dimension index="1" length="135" name="Cell_Across_Swath"/>
+          <Dimension index="0" length="204" name="Cell_Along_Swath"/>
+          <Variable name="Cloud_Mask_QA">
+            <Dimension index="0" name="Cell_Along_Swath"/>
+            <Dimension index="1" name="Cell_Across_Swath"/>
+          </Variable>
+          <FieldValueType direction="true" endian="true"
+            hasStartBitIndex="1" hasStartLayerIndex="0"
+            hasStopBitIndex="2" hasStopLayerIndex="0" samplingdim="NULL">
+            <ValidQualityLevel interpretation="ProbablyClear" value="2"/>
+          </FieldValueType>
+        </ScreeningField>
+      </ScreeningAssertion>
+    </OR>
+  </Expression>
+</QualityView>
+
+</root>
